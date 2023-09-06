@@ -20,6 +20,9 @@ export const revalidate = 0;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const userSongs = await getSongsById();
+
+  // throw new Error('Test')
+
   return (
     <html lang="en">
       <body className={font.className}>
