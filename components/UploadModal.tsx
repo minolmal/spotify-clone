@@ -18,7 +18,7 @@ const UploadModal = () => {
   const uploadModal = useUploadModal();
   const { user } = useUser();
   const supabaseClient = useSupabaseClient();
-  const router = useRouter()
+  const router = useRouter();
 
   const { register, handleSubmit, reset } = useForm<FieldValues>({
     defaultValues: {
@@ -90,12 +90,11 @@ const UploadModal = () => {
         return toast.error(supabaseError.message);
       }
 
-      router.refresh()
-      setIsLoading(false)
-      toast.success("Song created!")
-      reset()
-      uploadModal.onClose()
-      
+      router.refresh();
+      setIsLoading(false);
+      toast.success("Song created!");
+      reset();
+      uploadModal.onClose();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -104,7 +103,7 @@ const UploadModal = () => {
   };
   return (
     <Modal
-      title="add a song"
+      title="Add a song"
       description="Upload an mp3 file"
       isOpen={uploadModal.isOpen}
       onChange={onChange}>

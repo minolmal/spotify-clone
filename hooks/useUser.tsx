@@ -15,9 +15,7 @@ type UserContextType = {
 
 export const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export type Props = {
-  [propName: string]: any;
-};
+export type Props = { [propName: string]: any };
 
 export const MyUserContextProvider = (props: Props) => {
   const { session, isLoading: isLoadingUser, supabaseClient: supabase } = useSessionContext();
@@ -31,7 +29,7 @@ export const MyUserContextProvider = (props: Props) => {
   const getSubscription = () =>
     supabase
       .from("subscription")
-      .select("*,prices(*,products(*))")
+      .select("*, prices(*, products(*))")
       .in("status", ["trialing", "active"])
       .single();
 
@@ -43,13 +41,11 @@ export const MyUserContextProvider = (props: Props) => {
         const userDetailsPromise = results[0];
         const subscriptionPromise = results[1];
 
-        if (userDetailsPromise.status === "fulfilled") {
+        if (userDetailsPromise.status === "fulfilled")
           setUserDetails(userDetailsPromise.value.data as UserDetails);
-        }
 
-        if (subscriptionPromise.status === "fulfilled") {
+        if (subscriptionPromise.status === "fulfilled")
           setSubscription(subscriptionPromise.value.data as Subscription);
-        }
 
         setIsLoadingData(false);
       });
@@ -57,7 +53,7 @@ export const MyUserContextProvider = (props: Props) => {
       setUserDetails(null);
       setSubscription(null);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isLoadingUser]);
 
   const value = {

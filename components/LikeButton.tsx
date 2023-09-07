@@ -20,9 +20,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    if (!user?.id) {
-      return;
-    }
+    if (!user?.id) return;
 
     const fetchData = async () => {
       const { data, error } = await supabaseClient
@@ -32,9 +30,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         .eq("song_id", songId)
         .single();
 
-      if (!error && data) {
-        setIsLiked(true);
-      }
+      if (!error && data) setIsLiked(true);
     };
 
     fetchData();
@@ -43,9 +39,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
 
   const handleLike = async () => {
-    if (!user) {
-      return authModal.onOpen();
-    }
+    if (!user) return authModal.onOpen();
 
     if (isLiked) {
       const { error } = await supabaseClient
@@ -73,7 +67,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
       }
     }
 
-    router.refresh()
+    router.refresh();
   };
 
   return (
