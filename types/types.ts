@@ -1,5 +1,9 @@
 import Stripe from "stripe";
 
+export type ProductWithPrice = Product & {
+  prices?: Price[];
+};
+
 export type Song = {
   id: string;
   user_id: string;

@@ -1,9 +1,8 @@
-import { Song } from "@/types/types";
-import { useSessionContext } from "@supabase/auth-helpers-react";
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
-type Props = {};
+import { Song } from "@/types/types";
 
 const useGetSongsById = (id?: string) => {
   const [isLoading, setIsLoading] = useState(false);

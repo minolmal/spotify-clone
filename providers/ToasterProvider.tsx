@@ -3,9 +3,7 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 
-type Props = {};
-
-const ToasterProvider = (props: Props) => {
+const ToasterProvider = () => {
   return (
     <Toaster
       toastOptions={{

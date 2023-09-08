@@ -58,6 +58,7 @@ const createOrRetrieveCustomer = async ({ email, uuid }: { email: string; uuid: 
     .eq("id", uuid)
     .single();
 
+  // create customer
   if (error || !data.stripe_customer_id) {
     const customerData: { metadata: { supabaseUUID: string }; email?: string } = {
       metadata: { supabaseUUID: uuid },
@@ -79,6 +80,7 @@ const createOrRetrieveCustomer = async ({ email, uuid }: { email: string; uuid: 
     return customer.id;
   }
 
+  // retrieve customer
   return data.stripe_customer_id;
 };
 
